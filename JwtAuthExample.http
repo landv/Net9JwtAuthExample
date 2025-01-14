@@ -1,0 +1,37 @@
+@JwtAuthExample_HostAddress = http://localhost:5042
+
+
+
+###
+### Login as admin
+POST {{JwtAuthExample_HostAddress}}/api/auth/login
+Content-Type: application/json
+
+{
+    "username": "admin",
+    "password": "password"
+}
+
+### Login as user
+POST {{JwtAuthExample_HostAddress}}/api/auth/login
+Content-Type: application/json
+
+{
+    "username": "user", 
+    "password": "password"
+}
+
+### Access admin endpoint (Replace {token} with admin token)
+GET {{JwtAuthExample_HostAddress}}/api/auth/admin
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6InVzZXIiLCJyb2xlIjoiVXNlciIsIm5iZiI6MTczNjc1NjYxNiwiZXhwIjoxNzM2NzYwMjE2LCJpYXQiOjE3MzY3NTY2MTYsImlzcyI6InlvdXItaXNzdWVyIiwiYXVkIjoieW91ci1hdWRpZW5jZSJ9.bsXNcCwV0T_t5mUzKmLEYp-yk5U_x8uOqKWcYGBN-KY
+
+### Access user endpoint (Replace {token} with user token)
+GET {{JwtAuthExample_HostAddress}}/api/auth/user
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6InVzZXIiLCJyb2xlIjoiVXNlciIsIm5iZiI6MTczNjc1NjYxNiwiZXhwIjoxNzM2NzYwMjE2LCJpYXQiOjE3MzY3NTY2MTYsImlzcyI6InlvdXItaXNzdWVyIiwiYXVkIjoieW91ci1hdWRpZW5jZSJ9.bsXNcCwV0T_t5mUzKmLEYp-yk5U_x8uOqKWcYGBN-KY
+
+### Access all users endpoint (Replace {token} with any valid token)
+GET {{JwtAuthExample_HostAddress}}/api/auth/all
+Authorization: Bearer {token}
+
+### Try unauthorized access
+GET {{JwtAuthExample_HostAddress}}/api/auth/admin
